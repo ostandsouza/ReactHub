@@ -2,8 +2,9 @@
 
 ReactHub is an react js frontend built for maintaining automation results for all suites in single place. This project uses mongoDB(GridFS) to store all results files with the help go api backend. Inorder to push the results to database, you ll have to make 2 api calls at end of every test execution, a) For testcase data eg: suite name, suite type, date etc with tescase count eg: failed passed skipped total etc.
 b) For testcases result file html files or excel files or any other types are supported.
+
 You can check this implementation in another sample project mentioned below:
-https://github.com/ostandsouza/DockerWebAutomation
+https://github.com/ostandsouza/DockerWebAutomation/blob/master/src/main/java/com/dockerExpress/base/GetParamters.java
 
 To checkout dependant GO Api backend project:
 https://github.com/ostandsouza/GoApi-CI
@@ -29,7 +30,7 @@ These are few sample containing mongoDB sample data
 
 ### Collections
 All suites should have its own collection in mongoDB eg:DockerExpress,dcokerProtrade. 
-To store all bug id for suite in key value format we use collection: "IssueMap"
+To store all bug id for suite in key value format we use collection: "IssueMap".
 To store results files we use gridFS for this eg: "file.files", which in turn storage as chunks of data eg:"file.chunks".
 
 > show collections
@@ -57,7 +58,7 @@ This is how test results api looks like in database, after test results api is c
 { "_id" : ObjectId("5d30b1f3f728d55e3b84a1f9"), "length" : NumberLong(19), "chunkSize" : 261120, "uploadDate" : ISODate("2019-07-18T17:52:53.045Z"), "filename" : "Log_TS00099_2.txt", "metadata" : { "content-type" : "application/json" } }
 
 ### IssueMap sample
-This is an optional colelction, containing bug id for all suites which mapped in key value format.
+This is an optional collection, containing bug id for all suites which mapped in key value format.
 
 { "_id" : ObjectId("5d2aff366d0a8e0c94559f1c"), "dcokerProtrade" : [ "NEST-1234", "NEST-2345" ], "dockerExpress" : [ "NEST-4567" ], "MongoRest" : [ "NEST-7890", "NEST-5678", "NEST-3456" ] }
 

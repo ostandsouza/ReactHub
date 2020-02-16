@@ -15,7 +15,7 @@ interface IProps {
 
 const GlobalState: React.FC<IProps> = (props) => {
     var collection:string
-    var url:string = "mongodb://localhost:27017/react"
+    var url:any = process.env.REACT_APP_MONGO_URL
     // const [ConnectionStringAPI] = useHttp('/api/',{"url": "mongodb://localhost:27017/react"},[])
     // const [IssueMapAPI] = useHttp('/api/read',{"api": "IssueMap"},[])
     // const [ConnectionStatusAPI] = useGetHttp('/api/conn',[])
@@ -36,12 +36,13 @@ const GlobalState: React.FC<IProps> = (props) => {
     useEffect(() => {
         if(!ConnectionStatus){
           console.log("ConnectionStatus failed")
-            var conn:string;
+            var conn:any;
             const data = async() : Promise<any> =>{
                     try {
                         conn = await axios.get('/api/conn') 
                     } catch (e) {
                         console.log(`Axios request failed: ${e}`);
+                        conn = {"data":{"status":"null"}};
                     } 
                     return conn
                 };
